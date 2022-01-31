@@ -1,0 +1,28 @@
+target/
+.mvn
+mvnw
+mvnw.cmd
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+### *.xlsx
+*.rar
+*.cache
+/src/test/.classpath
+### eclipse ###
+.classpath
+.project
+.settings/
+bin/
+
+*.bak
+*.orig
+*.factorypath
+*.log
+
+### vscode ###
+.vscode/

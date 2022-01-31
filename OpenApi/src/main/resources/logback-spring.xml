@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_HOME" value="/data/app"/>
+    <conversionRule conversionWord="filter" converterClass="com.saas.demo.common.util.LogFilterConverter"/>
+
+    <!-- 控制台打印日志的相关配置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>
+                <![CDATA[%d{yyyy-MM-dd HH:mm:ss.SSS} %5level %X{apmTrace} [%thread] [%logger:%line] <%logger> <%C> <%M> %filter %m%n]]></pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件保存日志的相关配置 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 保存日志文件的路径 -->
+        <file>${LOG_HOME}/saasdemo.log</file>
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>
+                <![CDATA[%d{yyyy-MM-dd HH:mm:ss.SSS} %5level %X{apmTrace} [%thread] [%logger:%line] <%logger> <%C> <%M> %filter %m%n]]></pattern>
+        </encoder>
+
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${LOG_HOME}/saasdemo.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大保存时间：30天-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <!--日志文件最大的大小-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <!-- SQL文件保存日志的相关配置 -->
+    <appender name="SQL-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 保存日志文件的路径 -->
+        <file>${LOG_HOME}/sql.log</file>
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>
+                <![CDATA[%d{yyyy-MM-dd HH:mm:ss.SSS} %5level %X{apmTrace} [%thread] [%logger:%line] <%logger> <%C> <%M> %filter %m%n]]></pattern>
+        </encoder>
+
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${LOG_HOME}/sql.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大保存时间：30天-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <!--日志文件最大的大小-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+<!--    <logger name="com.saas.demo.common.mapper" level="DEBUG" additivity="false">-->
+<!--        <appender-ref ref="SQL-FILE"/>-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="SQL-FILE"/>
+    </root>
+
+
+</configuration>

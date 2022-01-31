@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="saas_mysql_tables" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <property name="projectRoot" value="" />
+
+        <property name="autoDelimitKeywords" value="true" />
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
+
+        <plugin type="com.saas.demo.mybatis.plugins.TemplateCodePlugin">
+            <property name="targetProject" value="src/main/resources" />
+            <property name="javaTargetPackage" value="com.saas.demo.common" />
+            <property name="targetPackage" value="myBatis" />
+            <property name="targetType" value="mapperExt" />
+            <property name="templatePath" value="template/EntityMapperExtXml.ftl" />
+            <property name="fileName" value="${EntityName}MapperExt.xml" />
+        </plugin>
+
+        <plugin type="com.saas.demo.mybatis.plugins.TemplateCodePlugin">
+            <property name="targetProject" value="src/main/java" />
+            <property name="javaTargetPackage" value="com.saas.demo" />
+            <property name="targetPackage" value="com.saas.demo" />
+            <property name="targetType" value="mapper" />
+            <property name="templatePath" value="template/EntityMapperExt.ftl" />
+            <property name="BaseEntity" value="BaseVcode" />
+            <property name="fileName" value="${EntityName}MapperExt.java" />
+        </plugin>
+
+        <plugin type="com.saas.demo.mybatis.plugins.TemplateCodePlugin">
+            <property name="targetProject" value="src/main/java" />
+            <property name="javaTargetPackage" value="com.saas.demo" />
+            <property name="targetPackage" value="com.saas.demo" />
+            <property name="targetType" value="dao" />
+            <property name="templatePath" value="template/EntityDao.ftl" />
+            <property name="BaseEntity" value="BaseVcode" />
+            <property name="fileName" value="${EntityName}Dao.java" />
+        </plugin>
+
+        <plugin type="com.saas.demo.mybatis.plugins.TemplateCodePlugin">
+            <property name="targetProject" value="src/main/java" />
+            <property name="javaTargetPackage" value="com.saas.demo" />
+            <property name="targetPackage" value="com.saas.demo" />
+            <property name="targetType" value="dao.impl" />
+            <property name="templatePath" value="template/EntityDaoImpl.ftl" />
+            <property name="BaseEntity" value="BaseVcode" />
+            <property name="fileName" value="${EntityName}DaoImpl.java" />
+        </plugin>
+
+        <plugin type="com.saas.demo.mybatis.plugins.TemplateCodePlugin">
+            <property name="targetProject" value="src/main/java" />
+            <property name="javaTargetPackage" value="com.saas.demo" />
+            <property name="targetPackage" value="com.saas.demo" />
+            <property name="targetType" value="service" />
+            <property name="templatePath" value="template/EntityService.ftl" />
+            <property name="BaseEntity" value="BaseVcode" />
+            <property name="fileName" value="${EntityName}Service.java" />
+        </plugin>
+
+        <plugin type="com.saas.demo.mybatis.plugins.TemplateCodePlugin">
+            <property name="targetProject" value="src/main/java" />
+            <property name="javaTargetPackage" value="com.saas.demo" />
+            <property name="targetPackage" value="com.saas.demo" />
+            <property name="targetType" value="service.impl" />
+            <property name="templatePath" value="template/EntityServiceImpl.ftl" />
+            <property name="BaseEntity" value="BaseVcode" />
+            <property name="fileName" value="${EntityName}ServiceImpl.java" />
+        </plugin>
+
+        <plugin type="com.saas.demo.mybatis.plugins.TemplateCodePlugin">
+            <property name="targetProject" value="src/main/java" />
+            <property name="javaTargetPackage" value="com.saas.demo" />
+            <property name="targetPackage" value="com.saas.demo" />
+            <property name="targetType" value="controller" />
+            <property name="templatePath" value="template/EntityController.ftl" />
+            <property name="BaseEntity" value="BaseVcode" />
+            <property name="fileName" value="${EntityName}Controller.java" />
+        </plugin>
+
+        <commentGenerator type="com.saas.demo.mybatis.plugins.CommentGeneratorPlugin">
+            <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+            connectionURL="jdbc:mysql://10.181.24.56:3306/saasdemo?useSSL=false&amp;nullNamePatternMatchesAll=true&amp;serverTimezone=UTC"
+            userId="canal" password="123456">
+            <property name="useInformationSchema" value="true" />
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.saas.demo" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="myBatis/gen" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.saas.demo.gen"
+            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <table schema="saasdemo" tableName="tenant">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="saasdemo" tableName="order_info">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>
