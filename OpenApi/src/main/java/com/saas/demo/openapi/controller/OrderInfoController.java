@@ -18,6 +18,9 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * @author zhihua.li
+ */
 @RestController
 @RequestMapping("/orderInfo/{tenantCode}")
 public class OrderInfoController {
@@ -42,7 +45,7 @@ public class OrderInfoController {
     @PostMapping(value = "/findOrder")
     public Result<List<OrderInfo>> findOrder(@PathVariable String tenantCode, @RequestBody(required = false) OrderInfo orderInfo) {
 
-        LambdaQueryWrapper<OrderInfo> queryWrapper = new LambdaQueryWrapper();
+        LambdaQueryWrapper<OrderInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(OrderInfo::getTenantCode, tenantCode);
         if (!StringUtils.isBlank(orderInfo.getOrderNo())) {
             queryWrapper.eq(OrderInfo::getOrderNo, orderInfo.getOrderNo());

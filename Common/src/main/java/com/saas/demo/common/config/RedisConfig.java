@@ -14,19 +14,18 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * redis配置类
- * @program: springbootdemo
- * @Date: 2019/1/25 15:20
- * @Author: Mr.Zheng
- * @Description:
+ *
+ * @author zhihua.li
  */
 @Configuration
-@EnableCaching //开启注解
+@EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * retemplate相关配置
-     * @param factory
-     * @return
+     *
+     * @param factory the factory
+     * @return redis template
      */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
@@ -61,8 +60,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     /**
      * 对hash类型的数据操作
      *
-     * @param redisTemplate
-     * @return
+     * @param redisTemplate the redis template
+     * @return hash operations
      */
     @Bean
     public HashOperations<String, String, Object> hashOperations(RedisTemplate<String, Object> redisTemplate) {
@@ -72,8 +71,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     /**
      * 对redis字符串类型数据操作
      *
-     * @param redisTemplate
-     * @return
+     * @param redisTemplate the redis template
+     * @return value operations
      */
     @Bean
     public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate) {
@@ -83,8 +82,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     /**
      * 对链表类型的数据操作
      *
-     * @param redisTemplate
-     * @return
+     * @param redisTemplate the redis template
+     * @return list operations
      */
     @Bean
     public ListOperations<String, Object> listOperations(RedisTemplate<String, Object> redisTemplate) {
@@ -94,8 +93,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     /**
      * 对无序集合类型的数据操作
      *
-     * @param redisTemplate
-     * @return
+     * @param redisTemplate the redis template
+     * @return operations
      */
     @Bean
     public SetOperations<String, Object> setOperations(RedisTemplate<String, Object> redisTemplate) {
@@ -105,8 +104,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     /**
      * 对有序集合类型的数据操作
      *
-     * @param redisTemplate
-     * @return
+     * @param redisTemplate the redis template
+     * @return z set operations
      */
     @Bean
     public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
