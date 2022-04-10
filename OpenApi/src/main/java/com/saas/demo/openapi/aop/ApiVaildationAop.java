@@ -20,7 +20,7 @@ public class ApiVaildationAop {
 
     Logger log = LoggerFactory.getLogger(ApiVaildationAop.class);
 
-    @Around("execution(public * com.ly.saas.demo.openapi.api.*Controller.*(..))")
+    @Around("execution(public * com.saas.demo.openapi.controller..*Controller.*(..))")
     public Object doMonitor(ProceedingJoinPoint pjp) throws Throwable {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
